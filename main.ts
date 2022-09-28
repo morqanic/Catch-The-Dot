@@ -1,51 +1,46 @@
 input.onButtonPressed(Button.A, function () {
-    if (0 < xPlayer) {
-        if (playing == "true"){
-            led.unplot(xPlayer, 4)
-            xPlayer--
-            led.plot(xPlayer, 4)
-        }
-        
+    if (0 < xPlayer && playing == "true") {
+        led.unplot(xPlayer, 4)
+        xPlayer--
+        led.plot(xPlayer, 4)  
     }
 })
 input.onButtonPressed(Button.B, function () {
-    if (xPlayer < 4) {
-        if (playing == "true") {
-            led.unplot(xPlayer, 4)
-            xPlayer ++
-            led.plot(xPlayer, 4)
-        }
+    if (xPlayer < 4 && playing == "true") {
+        led.unplot(xPlayer, 4)
+        xPlayer++
+        led.plot(xPlayer, 4)
     }
 })
-let roundscore = 0
+
 let score = 0
-let ydrop = 0
-let xdrop = 0
-let xPlayer = 0
+let yDrop = 0
+let xDrop = 0
 let playing = "false"
 let time = 500
+let xPlayer = 2
 playing = "true"
-xPlayer = 2
 led.plot(xPlayer, 4)
+
 while (true) {
     if (playing == "true") {
-        xdrop = randint(0, 4)
-        while (ydrop < 5) {
-            if (ydrop == 4 && xdrop == xPlayer) {
-                ydrop = 0
-                xdrop = randint(0, 4)
+        xDrop = randint(0, 4)
+        while (yDrop < 5) {
+            if (yDrop == 4 && xDrop == xPlayer) {
+                yDrop = 0
+                xDrop = randint(0, 4)
                 time -= 5
                 score ++
             }
-            led.plot(xdrop, ydrop)
+            led.plot(xDrop, yDrop)
             pause(time)
-            led.unplot(xdrop, ydrop)
-            ydrop ++ 
-            if (ydrop == 4 && xPlayer != xdrop) {
-                led.plot(xdrop, ydrop)
+            led.unplot(xDrop, yDrop)
+            yDrop ++ 
+            if (yDrop == 4 && xPlayer != xDrop) {
+                led.plot(xDrop, yDrop)
                 pause(time)
-                led.unplot(xdrop, ydrop)
-                ydrop ++
+                led.unplot(xDrop, yDrop)
+                yDrop ++
                 led.unplot(xPlayer, 4)
                 playing = "false"
                 basic.showLeds(`
@@ -67,9 +62,8 @@ while (true) {
     }
     if (playing == "false") {
         score = 0
-        ydrop = 0
-        xdrop = 0
-        xPlayer = 0
+        yDrop = 0
+        xDrop = 0
         playing = "false"
         time = 500
         xPlayer = 2
