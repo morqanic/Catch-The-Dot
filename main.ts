@@ -56,7 +56,7 @@ while (true) {
                 basic.showNumber(score)
                 pause(200)
                 basic.clearScreen()
-                basic.showString("PRESS AB")
+                basic.showString("PRESS AB",100)
             }
         }
     }
